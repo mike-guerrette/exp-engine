@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
     selector: 'content-bar',
     templateUrl: 'content-bar.component.html',
@@ -10,7 +9,6 @@ export class ContentBarComponent implements OnInit {
     constructor() { }
 
     showDialog() {
-        // dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
     }
 
     ngOnInit() {

@@ -12,7 +12,7 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        publicPath: `file://${__dirname}/dist`,
+        publicPath: `${__dirname}/dist`,
         filename: '[name].js'
     },
     resolve: {
@@ -23,15 +23,28 @@ const config = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
-                use: 'ts-loader'
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: {
+                            configFileName: './tsconfig.json'
+                        }
+                    },
+                    {loader: 'angular2-template-loader'}
+                ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader'},
+                    {loader: 'raw-loader'},
+                    {loader: 'css-loader'},                    
                     {loader: 'sass-loader'}                    
                 ]
+            },
+            {
+                test: /\.html$/,
+                use: 'raw-loader',
+                exclude: [`${__dirname}/src/index.html`]
             }
         ]
     },
